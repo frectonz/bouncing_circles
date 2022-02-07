@@ -63,6 +63,7 @@ window.addEventListener("load", function () {
 
       if (this.y + this.r + this.vy > canvas.height) {
         this.vy = -this.vy * this.f;
+        this.vx = -this.vx * this.f;
       } else {
         this.vy += this.g;
       }
@@ -79,7 +80,7 @@ window.addEventListener("load", function () {
 
   function setup() {
     balls = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 100; i++) {
       let randR = randFromRange(10, 30);
       let randX = randFromRange(randR, canvas.width - randR);
       let randY = Math.random() * (canvas.height - randR);
@@ -97,14 +98,14 @@ window.addEventListener("load", function () {
   }
 
   function loop() {
-    requestAnimationFrame(loop);
-
     c.clearRect(0, 0, canvas.width, canvas.height);
 
     balls.forEach((ball) => {
       ball.update();
     });
   }
+
+  this.setInterval(loop, 30);
 
   setup();
   loop();
